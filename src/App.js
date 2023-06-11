@@ -18,9 +18,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route index element={<Home userState={userState}/>} />
-          <Route path="login" element={<Login userState={userState}/>} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route index element={<Home userState={userState} />} />
+          <Route path="login" element={<Login userState={userState} />} />
+          <Route path="dashboard" element={<Dashboard userState={userState} />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

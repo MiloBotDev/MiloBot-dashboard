@@ -1,8 +1,12 @@
 import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-const Dashboard = () => {
+const Dashboard = ({userState}) => {
   return (
-    <p>This is the bot dashboard</p>
+    <>
+      { !userState.loggedIn ? <Navigate to="/login" /> : null }
+      <p>This is the bot dashboard</p>
+    </>
   )
 };
 
