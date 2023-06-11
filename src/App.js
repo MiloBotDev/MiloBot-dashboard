@@ -8,7 +8,7 @@ import { useState } from 'react';
 import Dashboard from './pages/Dashboard';
 
 const initialUserState = {
-  loggedIn: true
+  loggedIn: false
 };
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route index element={<Home />} />
+          <Route index element={<Home userState={userState}/>} />
           <Route path="login" element={<Login userState={userState}/>} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />

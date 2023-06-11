@@ -1,18 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({userState}) => {
   return (
     <>
-    <p>Home page</p>
-    <ul>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
-    </ul>
+      <p>Home page</p>
+      { userState.loggedIn ? <Link to="/dashboard">Dashboard</Link> : <Link to="/login">Login</Link> }
     </>
   )
 };
