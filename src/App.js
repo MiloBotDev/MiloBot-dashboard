@@ -18,8 +18,8 @@ function App() {
 
   return (
     <>
-      <NavBar />
       <BrowserRouter>
+        <NavBar userState={userState} />
         <Routes>
           <Route path="/">
             <Route index element={<Home userState={userState} />} />
