@@ -1,0 +1,30 @@
+@import '~bootstrap/scss/bootstrap';
+
+.page-wrapper {
+  padding: $spacer * 2;
+}
+
+.main-text {
+  text-align: center;
+  justify-content: center;
+  font-family: Verdana, sans-serif;
+  letter-spacing: $spacer * 0.1;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: main-text-fade-in 3s;
+}
+
+@keyframes main-text-fade-in {
+  0% {
+    opacity: 0;
+  }
+  7% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
