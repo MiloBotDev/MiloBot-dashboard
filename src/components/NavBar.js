@@ -1,13 +1,13 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 const NavBar = ({userState}) => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand as={Link} to="/">
           <img
             alt=""
             src="/discord-mark-white.svg"
@@ -35,13 +35,13 @@ function NavRightSide({userState}) {
   if (userState.loggedIn && location.pathname !== '/dashboard') {
     return(
       <>
-        <Nav.Link href="/dashboard">Go to dashboard</Nav.Link>
+        <Nav.Link as={Link} to="/dashboard">Go to dashboard</Nav.Link>
       </>
     )
   } else if (!userState.loggedIn) {
     return(
       <>
-        <Nav.Link href="/login">Login with Discord</Nav.Link>
+        <Nav.Link as={Link} to="/login">Login with Discord</Nav.Link>
       </>
     )
   }
