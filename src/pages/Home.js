@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 const Home = ({userState}) => {
   return (
     <>
-      <p>Home page</p>
-      { userState.loggedIn ? <Link to="/dashboard">Dashboard</Link> : <Link to="/login">Login</Link> }
+      <h1 className="home-main-text">MiloBot - An open-source Discord Bot to play games and more</h1>
     </>
   )
 };

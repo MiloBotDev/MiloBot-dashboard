@@ -33,4 +33,6 @@ function App() {
   );
 }
 
+document.documentElement.setAttribute("data-bs-theme", "dark");
+
 export default App;
