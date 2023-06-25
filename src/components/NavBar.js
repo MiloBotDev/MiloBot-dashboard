@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useLocation, Link } from 'react-router-dom';
+import config from '../config.json';
 
 const NavBar = ({userState}) => {
   return (
@@ -41,10 +42,27 @@ function NavRightSide({userState}) {
   } else if (!userState.loggedIn) {
     return(
       <>
-        <Nav.Link as={Link} to="/login">Login with Discord</Nav.Link>
+        <Nav.Link onClick={goToLogIn}>Login with Discord</Nav.Link>
       </>
     )
   }
+}
+
+async function goToLogIn() {
+  console.log('exeucting');
+  const authorizeUrl = 'https://discord.com/oauth2/authorize';
+  const params = new URLSearchParams();
+  params.append('response_type', 'code');
+  params.append('client_id', config.clientId.toString());
+  params.append('scope', 'identify guilds');
+  params.append('redirect_uri', config.baseUrl + '/login-redirect');
+  params.append('prompt', 'consent');
+  const stateResponse = await fetch(config.apiUrl + '/random-state-string');
+  const state = await stateResponse.text();
+  sessionStorage.setItem('state', state);
+  params.append('state', state);
+  const fullAuthorizeUrl = authorizeUrl + '?' + params.toString();
+  window.location.replace(fullAuthorizeUrl);
 }
 
 export default NavBar;

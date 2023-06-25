@@ -8,6 +8,7 @@ import NotFound from './pages/notfound/NotFound';
 import { useState } from 'react';
 import Dashboard from './pages/dashboard/Dashboard';
 import NavBar from './components/NavBar';
+import LoginRedirect from './pages/login-redirect/LoginRedirect';
 
 const initialUserState = {
   loggedIn: false
@@ -19,12 +20,12 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar userState={userState} />
         <Routes>
           <Route path="/">
             <Route index element={<Home userState={userState} />} />
             <Route path="login" element={<Login userState={userState} />} />
             <Route path="dashboard" element={<Dashboard userState={userState} />} />
+            <Route path="login-redirect" element={<LoginRedirect userState={userState} />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
