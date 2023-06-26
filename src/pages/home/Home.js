@@ -5,7 +5,7 @@ const Home = ({userState}) => {
   return (
     <>
       <NavBar userState={userState} />
-      <div class={styles['page-wrapper']}>
+      <div>
         <h1 className={styles['main-text']}>MiloBot - An open-source Discord Bot to play games and more</h1>
       </div>
     </>
