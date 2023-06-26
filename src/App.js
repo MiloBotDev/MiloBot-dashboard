@@ -7,15 +7,23 @@ import Home from './pages/home/Home';
 import NotFound from './pages/notfound/NotFound';
 import { useState } from 'react';
 import Dashboard from './pages/dashboard/Dashboard';
-import NavBar from './components/NavBar';
 import LoginRedirect from './pages/login-redirect/LoginRedirect';
 
-const initialUserState = {
-  loggedIn: false
-};
-
 function App() {
-  const [userState, setUserState] = useState(initialUserState);
+  const [userState, setUserState] = useState(() => {
+    const sessionJwtToken = localStorage.getItem('session-jwt-token');
+    if (sessionJwtToken) {
+      console.log('sessionJwtToken found');
+      return {
+        loggedIn: true,
+        sessionJwtToken: sessionJwtToken
+      };
+    } else {
+      return {
+        loggedIn: false
+      };
+    }
+  });
 
   return (
     <>

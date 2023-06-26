@@ -3,20 +3,26 @@ import NavBarSimple from '../../components/NavBarSimple';
 import { useEffect } from 'react';
 import config from '../../config';
 
-const LoginRedirect = () => {
+let exchangedCode = false;
 
+const LoginRedirect = () => {
   useEffect(() => {
     (async () => {
+      if (exchangedCode) {
+        return;
+      } else {
+        exchangedCode = true;
+      }
+      console.log('token exchange run');
       const formData = new FormData();
       const code = new URLSearchParams(window.location.search).get('code');
       const loginResponse = (await fetch(config.apiUrl + '/do-login?' 
           + new URLSearchParams({code})));
       const sessionJwtToken = await loginResponse.text();
       localStorage.setItem('session-jwt-token', sessionJwtToken);
-      console.log(sessionJwtToken);
       window.location.replace('/dashboard');
     })();
-  });
+  }, []);
 
   return (
     <>
