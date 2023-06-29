@@ -30,10 +30,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<Home userState={userState} />} />
-            <Route path="login" element={<Login userState={userState} />} />
-            <Route path="dashboard" element={<Dashboard userState={userState} />} />
-            <Route path="login-redirect" element={<LoginRedirect userState={userState} />} />
+            <Route index element={<Home userState={userState} setUserState={setUserState} />} />
+            <Route path="login" element={<Login userState={userState} setUserState={setUserState} />} />
+            <Route path="dashboard" element={<Dashboard userState={userState} setUserState={setUserState} />} />
+            <Route path="login-redirect" element={<LoginRedirect userState={userState} setUserState={setUserState} />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

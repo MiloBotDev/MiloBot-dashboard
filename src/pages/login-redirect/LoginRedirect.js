@@ -18,8 +18,8 @@ const LoginRedirect = () => {
       const code = new URLSearchParams(window.location.search).get('code');
       const loginResponse = (await fetch(config.apiUrl + '/do-login?' 
           + new URLSearchParams({code})));
-      const sessionJwtToken = await loginResponse.text();
-      localStorage.setItem('session-jwt-token', sessionJwtToken);
+      const sessionJwtToken = await loginResponse.json();
+      localStorage.setItem('session-jwt-token', sessionJwtToken.accessJWT);
       window.location.replace('/dashboard');
     })();
   }, []);

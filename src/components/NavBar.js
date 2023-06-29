@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useLocation, Link } from 'react-router-dom';
 import config from '../config.json';
 
-const NavBar = ({userState}) => {
+const NavBar = (props) => {
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
@@ -22,24 +22,31 @@ const NavBar = ({userState}) => {
           <Nav.Link href="#join-our-discord">Join Our Discord</Nav.Link>
         </Nav>
         <Nav>
-          <NavRightSide userState={userState} />
+          <NavRightSide {...props} />
         </Nav>
       </Container>
     </Navbar>
   )
 }
 
-function NavRightSide({userState}) {
+function NavRightSide({userState, setUserState}) {
   const location = useLocation();
   console.log(location);
 
-  if (userState.loggedIn && location.pathname !== '/dashboard') {
+  if (userState.loggedIn && !location.pathname.startsWith('/dashboard')) {
     return(
       <>
         <Nav.Link as={Link} to="/dashboard">Go to dashboard</Nav.Link>
+        <Nav.Link onClick={logOut}>Log out</Nav.Link>
       </>
     )
-  } else if (!userState.loggedIn) {
+  } else if (userState.loggedIn) {
+    return(
+      <>
+        <Nav.Link onClick={() => logOut(setUserState)}>Log out</Nav.Link>
+      </>
+    )
+  } else {
     return(
       <>
         <Nav.Link onClick={goToLogIn}>Login with Discord</Nav.Link>
@@ -63,6 +70,16 @@ async function goToLogIn() {
   params.append('state', state);
   const fullAuthorizeUrl = authorizeUrl + '?' + params.toString();
   window.location.replace(fullAuthorizeUrl);
+}
+
+async function logOut(setUserState) {
+  localStorage.clear('session-jwt-token');
+  setUserState({
+    loggedIn: false
+  });
+  if (window.location.pathname.startsWith('/dashboard')) {
+    window.location.replace('/');
+  }
 }
 
 export default NavBar;
