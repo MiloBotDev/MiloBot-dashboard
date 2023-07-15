@@ -1,0 +1,37 @@
+name: Deploy dashboard to server
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # build
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - name: create config file
+        run: "echo \" { \\\"clientId\\\": \\\"1003394397662093503\\\", \\\"apiUrl\\\": \\\"http://localhost:8080\\\", \\\"baseUrl\\\": \\\"http://localhost:3000\\\" } \" > src/config.json"
+      - run: npm run build
+      # delete existing files on the server
+      - name: install ssh keys for deleting existing files on the server
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+      - name: delete existing files on the server
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "rm -rf /var/www/milobot-dashboard/*"
+      - name: cleanup after deleting existing files on the server
+        run: rm -rf ~/.ssh
+      # deploy
+      - name: Upload built files
+        id: upload
+        uses: Creepios/sftp-action@v1.0.3
+        with:
+          host: '${{ secrets.SSH_HOST }}'
+          port: 22
+          username: '${{ secrets.SSH_USER }}'
+          privateKey: '${{ secrets.SSH_PRIVATE_KEY }}'
+          localPath: './build/'
+          remotePath: '/var/www/milobot-dashboard'
