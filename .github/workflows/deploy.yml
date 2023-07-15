@@ -12,7 +12,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - name: create config file
-        run: "echo \" { \\\"clientId\\\": \\\"1003394397662093503\\\", \\\"apiUrl\\\": \\\"http://api.milobot.tk\\\", \\\"baseUrl\\\": \\\"http://milobot.tk\\\" } \" > src/config.json"
+        run: "echo \" { \\\"clientId\\\": \\\"1003394397662093503\\\", \\\"apiUrl\\\": \\\"https://api.milobot.tk\\\", \\\"baseUrl\\\": \\\"https://milobot.tk\\\" } \" > src/config.json"
       - run: npm run build
       # delete existing files on the server
       - name: install ssh keys for deleting existing files on the server
