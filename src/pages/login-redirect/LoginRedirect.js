@@ -14,7 +14,7 @@ const LoginRedirect = () => {
         exchangedCode = true;
       }
       console.log('token exchange run');
-      const formData = new FormData();
+      //const formData = new FormData();
       const code = new URLSearchParams(window.location.search).get('code');
       const loginResponse = (await fetch(config.apiUrl + '/do-login?' 
           + new URLSearchParams({code})));
