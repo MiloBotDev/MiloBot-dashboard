@@ -1,10 +1,10 @@
 import styles from './Home.module.scss';
 import NavBar from '../../components/NavBar';
 
-const Home = (props) => {
+const Home = ({userState, setUserState}) => {
   return (
     <>
-      <NavBar {...props} />
+      <NavBar userState={userState} setUserState={setUserState} />
       <div>
         <h1 className={styles['main-text']}>MiloBot - An open-source Discord Bot to play games and more</h1>
       </div>
