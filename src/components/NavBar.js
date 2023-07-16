@@ -37,7 +37,7 @@ function NavRightSide({userState, setUserState}) {
     return(
       <>
         <Nav.Link as={Link} to="/dashboard">Go to dashboard</Nav.Link>
-        <Nav.Link onClick={logOut}>Log out</Nav.Link>
+        <Nav.Link onClick={() => logOut(setUserState)}>Log out</Nav.Link>
       </>
     )
   } else if (userState.loggedIn) {
