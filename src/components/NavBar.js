@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useLocation, Link } from 'react-router-dom';
-import config from '../config.json';
+import { goToLogIn } from '../utils/Login';
 
 const NavBar = (props) => {
   return (
@@ -55,27 +55,11 @@ function NavRightSide({userState, setUserState}) {
   }
 }
 
-async function goToLogIn() {
-  console.log('exeucting');
-  const authorizeUrl = 'https://discord.com/oauth2/authorize';
-  const params = new URLSearchParams();
-  params.append('response_type', 'code');
-  params.append('client_id', config.clientId.toString());
-  params.append('scope', 'identify guilds');
-  params.append('redirect_uri', config.baseUrl + '/login-redirect');
-  params.append('prompt', 'consent');
-  const stateResponse = await fetch(config.apiUrl + '/random-state-string');
-  const state = await stateResponse.text();
-  sessionStorage.setItem('state', state);
-  params.append('state', state);
-  const fullAuthorizeUrl = authorizeUrl + '?' + params.toString();
-  window.location.href = fullAuthorizeUrl;
-}
-
 async function logOut(setUserState) {
   localStorage.clear('session-jwt-token');
   setUserState({
-    loggedIn: false
+    loggedIn: false,
+    justLoggedOut: true
   });
 }
 

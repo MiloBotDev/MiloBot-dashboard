@@ -1,9 +1,9 @@
-import { Navigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar';
 import { useEffect, useState } from 'react';
 import config from '../../config';
 import styles from './Dashboard.module.scss';
 import mainLoadingTextStyles from '../../styles/MainLoadingText.module.scss';
+import { EnsureLogin } from '../../utils/Login';
 
 const Dashboard = ({userState, setUserState}) => {
   const [guilds, setGuilds] = useState();
@@ -25,7 +25,7 @@ const Dashboard = ({userState, setUserState}) => {
   return (
     <>
       <NavBar userState={userState} setUserState={setUserState} />
-      { !userState.loggedIn ? <Navigate to="/" replace={true} /> : null }
+      <EnsureLogin userState={userState} />
       { guilds == null ? <LoadingServers /> : <Guilds guilds={guilds} /> }
     </>
   )
