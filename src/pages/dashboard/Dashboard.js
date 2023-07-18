@@ -3,6 +3,7 @@ import NavBar from '../../components/NavBar';
 import { useEffect, useState } from 'react';
 import config from '../../config';
 import styles from './Dashboard.module.scss';
+import mainLoadingTextStyles from '../../styles/MainLoadingText.module.scss';
 
 const Dashboard = ({userState, setUserState}) => {
   const [guilds, setGuilds] = useState();
@@ -33,7 +34,7 @@ const Dashboard = ({userState, setUserState}) => {
 function LoadingServers() {
   return (
     <>
-      <div className={'main-loading-text'}>
+      <div className={mainLoadingTextStyles['main-loading-text']}>
         <h1>Loading your servers...</h1>
       </div>
     </>
@@ -43,7 +44,7 @@ function LoadingServers() {
 function Guilds({guilds}) {
   return (
     <>
-      <div className={'main-container'}>
+      <div className={styles['main-container']}>
         <h1>Your servers</h1>
         <div class="d-flex flex-wrap justify-content-center">
         {guilds.map((guild) => {

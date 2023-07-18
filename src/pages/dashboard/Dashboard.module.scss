@@ -19,3 +19,38 @@
     height: 9rem;
   }
 }
+
+.main-container {
+  background-color: #3a3f45;
+  //width: 964px;
+  //text-align: center;
+  //width: 90%;
+  //display: flex;
+  //justify-content: center;
+  //text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  //width: min(80%, 80rem);
+  @extend .mt-3;
+  @extend .mb-3;
+  @extend .rounded;
+  @extend .p-2;
+}
+
+@include media-breakpoint-down(md) {
+  .main-container {
+    width: 95%;
+  }
+}
+
+@include media-breakpoint-between(md, xl) {
+  .main-container {
+    width: 80%;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .main-container {
+    width: 65rem;
+  }
+}

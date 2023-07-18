@@ -1,0 +1,20 @@
+@import '~bootstrap/scss/bootstrap';
+
+.main-loading-text {
+  text-align: center;
+  justify-content: center;
+  font-family: Verdana, sans-serif;
+  letter-spacing: $spacer * 0.1;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: main-loading-text-blink 2s infinite;
+}
+
+@keyframes main-loading-text-blink {
+  50% {
+    opacity: 0.5;
+  }
+}
