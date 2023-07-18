@@ -1,4 +1,3 @@
-import styles from './LoginRedirect.module.scss';
 import NavBarSimple from '../../components/NavBarSimple';
 import { useEffect } from 'react';
 import config from '../../config';
@@ -27,7 +26,7 @@ const LoginRedirect = () => {
   return (
     <>
       <NavBarSimple />
-      <div className={styles['main-text']}>
+      <div className={'main-loading-text'}>
         <h1>Logging you in...</h1>
         <br />
         <h4>You will get redirected to the dashboard in a moment...</h4>

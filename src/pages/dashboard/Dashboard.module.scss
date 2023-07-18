@@ -1,0 +1,21 @@
+@import '~bootstrap/scss/bootstrap';
+
+@include media-breakpoint-down(sm) {
+  .guild-card {
+    width: 9rem;
+  }
+  .guild-image {
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .guild-card {
+    width: 11rem;
+  }
+  .guild-image {
+    width: 9rem;
+    height: 9rem;
+  }
+}
