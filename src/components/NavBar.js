@@ -69,7 +69,7 @@ async function goToLogIn() {
   sessionStorage.setItem('state', state);
   params.append('state', state);
   const fullAuthorizeUrl = authorizeUrl + '?' + params.toString();
-  window.location.replace(fullAuthorizeUrl);
+  window.location.href = fullAuthorizeUrl;
 }
 
 async function logOut(setUserState) {
@@ -77,9 +77,6 @@ async function logOut(setUserState) {
   setUserState({
     loggedIn: false
   });
-  if (window.location.pathname.startsWith('/dashboard')) {
-    window.location.replace('/');
-  }
 }
 
 export default NavBar;

@@ -1,4 +1,4 @@
-//import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar';
 import { useEffect, useState } from 'react';
 import config from '../../config';
@@ -20,12 +20,12 @@ const Dashboard = ({userState, setUserState}) => {
         setGuilds(data);
       })();
     }
-  }, []);
+  }, [userState]);
 
   return (
     <>
       <NavBar userState={userState} setUserState={setUserState} />
-      {/* !userState.loggedIn ? <Navigate to="/login" /> : null */}
+      { !userState.loggedIn ? <Navigate to="/" replace={true} /> : null }
       { guilds == null ? <LoadingServers /> : <Guilds guilds={guilds} /> }
     </>
   )
@@ -52,7 +52,7 @@ function Guilds({guilds}) {
             <>
               <div className={'card p-2 m-2 ' + styles['guild-card']}>
                 <div className="text-center">
-                  <img className={"card-img-top rounded-circle " + styles['guild-image']} src={guild.iconUrl} alt="Card image cap" />
+                  <img className={"card-img-top rounded-circle " + styles['guild-image']} src={guild.iconUrl} alt={"Server " + guild.name + " icon"} />
                   <div className="card-body">
                     <h5 class="card-title">{guild.name}</h5>
                   </div>
