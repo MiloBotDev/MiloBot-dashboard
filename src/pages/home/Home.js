@@ -6,7 +6,7 @@ const Home = ({userState, setUserState}) => {
     <>
       <NavBar userState={userState} setUserState={setUserState} />
       <div>
-        <h1 className={styles['main-text']}>MiloBot - An open-source Discord Bot to play games and more</h1>
+        <h1 className={styles['main-text-fade-in']}>MiloBot - An open-source Discord Bot to play games and more</h1>
       </div>
     </>
   )

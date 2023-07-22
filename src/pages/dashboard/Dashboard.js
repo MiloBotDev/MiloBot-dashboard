@@ -4,6 +4,7 @@ import config from '../../config';
 import styles from './Dashboard.module.scss';
 import mainLoadingTextStyles from '../../styles/MainLoadingText.module.scss';
 import { EnsureLogin } from '../../utils/Login';
+import { Link } from 'react-router-dom';
 
 const Dashboard = ({userState, setUserState}) => {
   const [guilds, setGuilds] = useState();
@@ -45,7 +46,7 @@ function Guilds({guilds}) {
   return (
     <>
       <div className={styles['main-container']}>
-        <h1>Your servers</h1>
+        <h1>Select a server</h1>
         <div class="d-flex flex-wrap justify-content-center">
         {guilds.map((guild) => {
           return (
@@ -57,6 +58,7 @@ function Guilds({guilds}) {
                     <h5 class="card-title">{guild.name}</h5>
                   </div>
                 </div>
+                <GuildCardLink guild={guild} />
               </div>
             </>
           )
@@ -65,6 +67,22 @@ function Guilds({guilds}) {
       </div>
     </>
   )
+}
+
+function GuildCardLink({guild}) {
+  if (guild.isBotInGuild) {
+    return (
+      <Link to={'/dashboard/' + guild.id} className='stretched-link'></Link>
+    );
+  } else {
+    const url = 'https://discord.com/api/oauth2/authorize?client_id=' + config.clientId + '&permissions=8&scope=bot&guild_id=' + guild.id;
+    return (
+      // Disable anchor-has-content warning because we don't need text in the link
+      // (the user can click anywhere on the card go to the link because of the stretched-link class)
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
+      <a href={url} className='stretched-link'></a>
+    )
+  }
 }
 
 export default Dashboard;

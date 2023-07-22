@@ -1,15 +1,8 @@
+@use '../../styles/MainText.module.scss';
 @import '~bootstrap/scss/bootstrap';
 
-.main-text {
-  text-align: center;
-  justify-content: center;
-  font-family: Verdana, sans-serif;
-  letter-spacing: $spacer * 0.1;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.main-text-fade-in {
+  @extend %main-text;
   animation: main-text-fade-in 3s;
 }
 
