@@ -8,6 +8,7 @@ import NotFound from './pages/notfound/NotFound';
 import { useState } from 'react';
 import Dashboard from './pages/dashboard/Dashboard';
 import LoginRedirect from './pages/login-redirect/LoginRedirect';
+import GuildDashboard from './pages/dashboard/guild/GuildDashboard';
 
 function App() {
   const [userState, setUserState] = useState(() => {
@@ -33,6 +34,7 @@ function App() {
             <Route index element={<Home userState={userState} setUserState={setUserState} />} />
             <Route path="login" element={<Login userState={userState} setUserState={setUserState} />} />
             <Route path="dashboard" element={<Dashboard userState={userState} setUserState={setUserState} />} />
+            <Route path="dashboard/:guildId" element={<GuildDashboard userState={userState} setUserState={setUserState} />} />
             <Route path="login-redirect" element={<LoginRedirect userState={userState} setUserState={setUserState} />} />
             <Route path="*" element={<NotFound />} />
           </Route>

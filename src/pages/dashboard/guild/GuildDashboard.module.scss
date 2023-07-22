@@ -1,0 +1,19 @@
+@use '../../../styles/MainText.module.scss';
+@import '~bootstrap/scss/bootstrap';
+
+.main-text-fade-in {
+  @extend %main-text;
+  animation: main-text-fade-in 3s;
+}
+
+@keyframes main-text-fade-in {
+  0% {
+    opacity: 0;
+  }
+  7% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
